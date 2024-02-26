@@ -16,6 +16,7 @@ echo "${INPUT_DEPLOY_KEY}" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
 # set up git
+git lfs install
 git config --global user.name "${INPUT_GIT_USERNAME}"
 git config --global user.email "${INPUT_GIT_EMAIL}"
 ssh-keyscan -H github.com > ~/.ssh/known_hosts
