@@ -16,7 +16,6 @@ echo "${INPUT_DEPLOY_KEY}" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 
 # set up git
-git lfs install
 git config --global user.name "${INPUT_GIT_USERNAME}"
 git config --global user.email "${INPUT_GIT_EMAIL}"
 ssh-keyscan -H github.com > ~/.ssh/known_hosts
@@ -32,6 +31,8 @@ git checkout $INPUT_DESTINATION_BRANCH || git checkout -b $INPUT_DESTINATION_BRA
 # ensure destination directory exists, and is emptied if appropriate
 mkdir -p $INPUT_DESTINATION_FOLDER
 cd $INPUT_DESTINATION_FOLDER
+git lfs install
+
 if [ "${INPUT_DELETE_DESTINATION}" = "true" ]; then
     git rm -rf .
 fi
