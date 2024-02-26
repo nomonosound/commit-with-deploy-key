@@ -21,6 +21,9 @@ git config --global user.email "${INPUT_GIT_EMAIL}"
 ssh-keyscan -H github.com > ~/.ssh/known_hosts
 GIT_SSH='ssh -i /github/home/.ssh/id_rsa -o UserKnownHostsFile=/github/home/.ssh/known_hosts'
 
+# Don't download LFS files initially
+export GIT_LFS_SKIP_SMUDGE=1
+
 # clone the repo into our working directory and cd to it
 GIT_SSH_COMMAND=$GIT_SSH git clone git@github.com:$INPUT_DESTINATION_REPO.git $WORKING_DIR
 cd $WORKING_DIR
